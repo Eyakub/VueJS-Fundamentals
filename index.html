@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1 v-if="viewed == viewed2">You have viewed this page</h1>
+      <h1 v-else="viewed == viewed2">You have viewed False page</h1>
+      <h1 v-pre>{{ message }}</h1>
+      <h1 v-once>{{ message }}</h1>
+      <h1 v-cloak>{{ cloak }}</h1>
+    </div>
+  </body>
+
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "Hello <strong>Vue</strong> world",
+        intro: "Welcome to the Tutorial <small>VUE</small>",
+        cloak: "This is cloak, when reload watch carefully",
+        viewed: true,
+        viewed2: true
+      }
+    });
+  </script>
+</html>

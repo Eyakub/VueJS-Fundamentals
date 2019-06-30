@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous" />
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Hello {{fullname}} </h1>
+                <ul class="text-left">
+                    <li>First name: {{ first }}</li>
+                    <li>Last name: {{ last }}</li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="">Full name: </label>
+                <input type="text" v-model="fullname" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <lavel>First name: </lavel>
+                    <input type="text" v-model="first" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <lavel>last name: </lavel>
+                    <input type="text" v-model="last" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello vue world",
+            first: '',
+            last: ''
+        },
+        computed: {
+            fullname: {
+                // getter function
+                get: function () {
+                    return this.first + ' ' + this.last
+                },
+                //setter function
+                set: function (value) {
+                    var name = value.split(' ')
+                    this.first = name[0]
+                    this.last = name[name.length - 1]
+                }
+            }
+        }
+    });
+</script>
+
+</html>
