@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+    <div class="" id="app">
+        <input type="text" v-model="searchQuery">
+        <p v-if="isSearching">Searching...</p>
+        <div v-else>
+            <ol>
+                <li v-for="result in results">{{ result }}</li>
+            </ol>
+        </div>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                searchQuery: '',
+                results: [],
+                isSearching: false
+            },
+
+            watch: {
+                searchQuery: function(query){
+                    // console.log(query);
+                    this.isSearching = true;
+                    var vm = this;
+                    console.log(this)
+                    setTimeout(function(){
+                        vm.results = ['JavaScripts', 'PHP', 'MySQL', 'Python'];
+                        vm.isSearching = false;
+                    }, 500)
+                }
+            }
+        });
+    </script>
+</body>
+</html>
