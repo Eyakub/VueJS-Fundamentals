@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,59 @@
     <title>Computed Properties Watchers</title>
     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
 </head>
+
 <body>
     <div id="app">
         <ol>
-            <li v-for="movie in formatedMovies"> {{  }}</li>
+            <li v-for="movie in formatedMovies"> {{ movie }}</li>
         </ol>
-        <button >Add Movie</button>
+        <button v-on:click="addMovie">Add Movie</button>
     </div>
 
     <script>
         new Vue({
             el: '#app',
             data: {
-                movies: [
-                    {name: 'The Matrix', year: 1999},
-                    {name: 'The Matrix Reloaded', year: 2002},
-                    {name: 'The Matrix Revolutions', year: 2006},
+                movies: [{
+                        name: 'The Matrix',
+                        year: 1999
+                    },
+                    {
+                        name: 'The Matrix Reloaded',
+                        year: 2002
+                    },
+                    {
+                        name: 'The Matrix Revolutions',
+                        year: 2006
+                    },
                 ]
             },
 
+            methods: {
+                addMovie: function(){
+                    this.movies.push({
+                        name: 'The fast and the furious',
+                        year: '2001'
+                    });
+                },
+            },
+
             computed: {
-                formatedMovies: function(){
-                    this.movies.map(function(movie){
-                        return movie.name + ' (' + movie.year + ')'; 
+                formatedMovies: function () {
+                    return this.movies.map(function (movie) {
+                        return movie.name + ' (' + movie.year + ')';
                     });
                 }
             },
 
-            watch:{
-
+            watch: {
+                movies: function(movies){
+                    var newMovie = movies[movie.length - 1];
+                    alert(newMovie.name + ' from ' + newMovie.year + ' was added.');
+                }
             }
         })
     </script>
 </body>
+
 </html>
