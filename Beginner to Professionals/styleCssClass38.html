@@ -38,13 +38,30 @@
             border-right: 100px solid transparent;
             border-top: 150px solid #49A5C4;
         }
+
+        /* animations */
+        .shape.animate{
+            animation-name: stretch;
+            animation-duration: 1.0s;
+            animation-timing-function: ease-out;
+        }
+
+        @keyframes stretch{
+            0% {
+                transform: scale(.3);
+            }
+            100% {
+                transform: scale(1.0);
+            }
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <div class="shape" 
+        <div class="shape"  
         v-for="shape in shapes"
-        v-bind:class="[ shape.shape]">
+        v-bind:class="[ shape.shape, shape.direction ? shape.direction: '',
+        {animate: shape.animate}]">
 
         </div>
     </div>
@@ -56,6 +73,10 @@
                 shapes: [
                     {shape: 'circle'},
                     {shape: 'square'},
+                    {shape: 'triangle', direction: 'up', animate: true},
+                    {shape: 'triangle', direction: 'right'},
+                    {shape: 'triangle', direction: 'down', animate: true},
+                    {shape: 'triangle', direction: 'left'},
                 ]
             },
         })

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercuse Style Inline Style Class</title>
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    <style>
+            .circle{
+                background-color: red;
+                border-radius: 50%;
+            }
+    
+            .square {
+                background-color: blue
+            }
+    
+            .triangle{
+                width: 0;
+                height: 0;
+            }
+    
+            .triangle.up{
+                border-left: 100px solid transparent;
+                border-right: 100px solid transparent;
+                border-bottom: 150px solid orange;
+            }
+    
+            .triangle.right{
+                border-top: 100px solid transparent;
+                border-bottom: 100px solid transparent;
+                border-left: 150px solid green;
+            }
+    
+            .triangle.down{
+                border-left: 100px solid transparent;
+                border-right: 100px solid transparent;
+                border-top: 150px solid #49A5C4;
+            }
+
+            .highlighted{
+                background-color: #DECA9B;
+            }
+
+            .shape{
+                width: 150px;
+                height: 150px;
+                background-color: blue;
+            }
+    
+            /* animations */
+            .shape.animate{
+                animation-name: stretch;
+                animation-duration: 1.0s;
+                animation-timing-function: ease-out;
+            }
+    
+            @keyframes stretch{
+                0% {
+                    transform: scale(.3);
+                }
+                100% {
+                    transform: scale(1.0);
+                }
+            }
+        </style>
+</head>
+<body>
+    
+    <div id="app">
+        <div class="shape" v-bind:style="shapeStyles" v-on:click="changeShape">
+
+        </div>
+        <h1>Employees</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Company</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(employee, loopIndex) in employees" v-bind:class="{ 
+                    highlighted: loopIndex % 2}">
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.title}}</td>
+                    <td>{{companyName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                shapeStyles: {},
+                employees: [
+                    {name: 'Abby', title: 'Accountant'},
+                    {name: 'Andy', title: 'Marketing Manager'},
+                    {name: 'Brandon', title: 'VueJS expert'},
+                    {name: 'Bob', title: 'Key account Manager'},
+                ],
+                companyName: 'VueX Ltd.',
+            },
+
+            methods: {
+                changeShape: function(){
+                    /* this is to check is nothing states, its square*/
+                    if (typeof this.shapeStyles['border-radius'] !== 'undefined'){
+                        /* this means pushing no value(undefined) to border-radius to make it circle*/
+                        Vue.set(this.shapeStyles, 'border-radius', undefined);
+                    } else{
+                        Vue.set(this.shapeStyles, 'border-radius', '50%')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
