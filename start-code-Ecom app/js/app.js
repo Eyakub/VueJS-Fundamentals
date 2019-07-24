@@ -1,7 +1,7 @@
 new Vue({
     el: '#app',
     data: {
-
+        isShowingCart: false,
         cart: {
             items: []
         },
@@ -70,6 +70,9 @@ new Vue({
                 total += item.quantity * item.product.price;
             })
             return total;
+        },
+        taxAmount: function(){
+            return ((this.cartTotal * 10) / 100);
         }
     },
 
