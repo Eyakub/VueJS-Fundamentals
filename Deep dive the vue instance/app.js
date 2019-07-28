@@ -1,10 +1,13 @@
-new Vue({
+var vm = new Vue({
     el: '#app',
     data: {
         message: 'hello',
     },
-    methods: {
-        
-    },
+});
 
+vm.message = 'Hello world';
+alert(vm.$el.textContent);
+
+Vue.nextTick(function(){
+    alert(vm.$el.textContent);
 })
