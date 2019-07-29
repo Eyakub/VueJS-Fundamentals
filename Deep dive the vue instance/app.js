@@ -12,12 +12,12 @@ var vm = new Vue({
     },
 });
 
-vm.message = 'Hello world';
-alert(vm.$el.textContent);
+// vm.message = 'Hello world';
+// alert(vm.$el.textContent);
 
-Vue.nextTick(function(){
-    alert(vm.$el.textContent);
-})
+// Vue.nextTick(function(){
+//     alert(vm.$el.textContent);
+// });
 
 // vm.$watch('counter', function(newValue, oldValue){
 //     alert('Counter changed from ' + oldValue + ' to ' + newValue + '!');
@@ -31,9 +31,14 @@ Vue.nextTick(function(){
 //     alert('First name changed from ' + oldValue.firstName + ' to ' + newValue.firstName + '!')
 // }, {deep: true});
 
-vm.$watch(function(){
-    return this.counter;
+var unwatch = vm.$watch(
+    function(){
+        return this.counter;
+    }, 
+    function(newValue, oldValue){
+        alert('Counter changed from ' + oldValue + ' to ' + newValue + '!');
+});
 
-}, function(newValue, oldValue){
-    alert('Counter changed from ' + oldValue + ' to ' + newValue + '!');
-})
+setTimeout(function(){
+    unwatch();
+}, 5000);
