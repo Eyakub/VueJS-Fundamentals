@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Accessing The Dom with Refs</title>
+    <title>Mounting Templates Dynamically</title>
 </head>
 <body>
-    <div id="app">
-        <h1 ref="message">{{ message }}</h1>
-        <button ref="myButton" @click="clickButton">Click Me!</button>
+    <div id = "app">
+        
     </div>
-
-    <ul>
-        <li v-for="n in 10" ref="numbers">{{ n }}</li>
-    </ul>
-
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="mountingTemplatesDynamically.js"></script>

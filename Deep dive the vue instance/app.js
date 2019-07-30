@@ -62,8 +62,14 @@ console.log(vm.$refs);
 
 
     //accessing the dom with refs
-    setTimeout(function(){
-        vm.$refs.message.innerText = "This is a test";
-    }, 2000);
+    // setTimeout(function(){
+    //     vm.$refs.message.innerText = "This is a test";
+    // }, 2000);
 
-    console.log(vm.$refs);
+    // console.log(vm.$refs);
+
+
+    // destroying vue instance
+    setTimeout(function(){
+        vm.$destroy();
+    }, 5000);
