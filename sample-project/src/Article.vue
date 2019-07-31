@@ -33,3 +33,10 @@
         }
     }
 </script>
+
+<style scoped>
+    * {
+        color: red;
+        font-style: italic;
+    }
+</style>
