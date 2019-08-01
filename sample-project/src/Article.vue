@@ -3,7 +3,10 @@
         <h1>{{ title }}</h1>
         <p>Published on {{ published | moment }}</p>
         <p class="lead">{{ content }}</p>
-        <app-author></app-author>
+        <!-- <app-author :firstName='author.firstName' 
+                    :lastName="author.lastName">
+        </app-author> -->
+        <app-author :author="author"></app-author>
     </div>
 </template>
 
@@ -19,6 +22,10 @@
                 title: '10 reason why vuejs is awesome',
                 published: new Date(),
                 content: 'Hi there is article content',
+                author: {
+                    firstName: 'Eyakub',
+                    lastName: 'Sorkar',
+                },
             };
         },
 

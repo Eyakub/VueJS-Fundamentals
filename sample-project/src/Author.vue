@@ -7,13 +7,7 @@
 
 <script>
     export default{
-        data(){
-            return {
-                author: {
-                    firstName: 'Eyakub',
-                    lastName: 'Sorkar',
-                },
-            };
-        }
+        // props:['firstName', 'lastName'],
+        props: ['author']
     }
 </script>
