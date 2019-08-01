@@ -8,6 +8,11 @@
 <script>
     export default{
         // props:['firstName', 'lastName'],
-        props: ['author']
+        props: {
+            author: {
+                type: Object,
+                required: true,
+            },
+        }
     }
 </script>
