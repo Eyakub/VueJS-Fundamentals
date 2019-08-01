@@ -2,11 +2,15 @@
     <div class="article">
         <h1>{{ title }}</h1>
         <p>Published on {{ published | moment }}</p>
+        <p> Shares: {{ shares}} </p>
         <p class="lead">{{ content }}</p>
         <!-- <app-author :firstName='author.firstName' 
                     :lastName="author.lastName">
         </app-author> -->
         <app-author :author="author"></app-author>
+
+        <br><br>
+        <app-social-sharing @articleWasShared="shared('hello', $event)"></app-social-sharing>
     </div>
 </template>
 
@@ -15,6 +19,7 @@
 <script>
     import moment from 'moment';
     import Author from './Author.vue';
+    import Social from './Social.vue';
 
     export default{
         data(){
@@ -26,6 +31,7 @@
                     firstName: 'Eyakub',
                     lastName: 'Sorkar',
                 },
+                shares: 0,
             };
         },
 
@@ -35,15 +41,25 @@
             }
         },
 
+        methods: {
+            shared: function(message, event){
+                this.shares++;
+                console.log(message);
+                console.log(event);
+            }
+        },
+
         components: {
             appAuthor: Author,
-        }
+            appSocialSharing: Social,
+        },
+
     }
 </script>
 
 <style scoped>
-    * {
+    /* * {
         color: red;
         font-style: italic;
-    }
+    } */
 </style>
