@@ -10,7 +10,8 @@
         <app-author :author="author"></app-author>
 
         <br><br>
-        <app-social-sharing @articleWasShared="shared('hello', $event)"></app-social-sharing>
+        <!-- this $data shares data property from script -->
+        <app-social-sharing :article="$data" @articleWasShared="shared('hello', $event)"></app-social-sharing>
     </div>
 </template>
 

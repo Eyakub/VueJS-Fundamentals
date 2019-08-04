@@ -1,15 +1,25 @@
 <template>
     <div class="alert alert-info">
-        {{ announcement}}
+        <div v-if="announcement"><p>{{ announcement}}</p></div>
+        <div v-else><p>No Announcement yet</p></div>
+            
     </div>
 </template>
 
 <script>
+    import { eventBus } from './main';
+
     export default {
         data(){
             return {
-                announcement: 'The site will go down for maintenance soon',
+                announcement: null,
             };
+        },
+
+        created(){
+            eventBus.$on('articleWasShared', (data)=>{
+                this.announcement = data.article.title + ' was shared on ' + data.media + '!';
+            });
         }
     }
 </script>
