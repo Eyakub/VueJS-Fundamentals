@@ -1,6 +1,9 @@
 <template>
     <div>
-        <h2></h2>
+        <h2>Contact Us</h2>
+
+        <slot name="top"></slot>
+
         <form action="">
             <div class="form-group">
                 <label for="yourName">Your name</label>
@@ -20,7 +23,7 @@
                     placeholder="Enter your Message"></textarea>
             </div>
 
-            <slot>
+            <slot name="bottom">
                 <p>We will be get back to you.</p>
             </slot>
             <button type="submit" class="btn btn-primary">Send</button>
