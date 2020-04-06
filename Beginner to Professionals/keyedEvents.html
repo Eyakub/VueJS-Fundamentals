@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+  <title>Keyed Event Modifier</title>
+</head>
+
+<body>
+  <div id="app" >
+    <form action="#" method="GET">
+      <input type="search" 
+        v-model="query" 
+        v-on:keyup="evaluateKey"
+        v-on:keyup.enter="executeSearch">
+      <p>Query: {{ query }}</p>
+      <button type="button" 
+        v-on:click.once="executeSearch" >
+        Search
+      </button>
+
+    </form>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        appName: "Practice",
+        query: '',
+        result: '',
+        isRunning: false,
+      },
+
+      methods: {
+        executeSearch: function(){
+          // this.isRunning = true;
+          // document.forms[0].submit();
+          alert('search cliked')
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>

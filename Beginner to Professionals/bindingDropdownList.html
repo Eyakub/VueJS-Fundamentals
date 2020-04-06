@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+  <title>Binding Dropdown</title>
+  <style>
+    .headers {
+      font-family: 'Verdana';
+      margin: 0;
+    }
+
+    .accent-color {
+      color: #FF6A00;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <h2 v-text="appName" v-bind:style="[accentColor, headers]"></h2>
+        <h2 v-text="appName" v-bind:style="accentColor"></h2> -->
+
+    <h2>Dropdown</h2>
+    <select v-model="selectedSearchIndex" id="">
+      <option value="beers">Beers</option>
+      <option value="breweries">Breweries</option>
+      <option value="distilleries">Distilleries</option>
+    </select>
+    <small>
+      selected: {{ selectedSearchIndex }}
+    </small>
+    <hr>
+    <h2>Multi Dropdown</h2>
+    <!-- we will work on it on module 5 -->
+    <select v-model="selectedSearchIndexes" id="">
+      <option value="beers">Beers</option>
+      <option value="breweries">Breweries</option>
+      <option value="distilleries">Distilleries</option>
+    </select>
+    <small>
+      selected: {{ selectedSearchIndexes }}
+    </small>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        appName: "Practice",
+        isOnline: true,
+        isPowerSyntaxEnabled: false,
+        selectedSearchIndex: 'distilleries',
+        selectedSearchIndexes: ['beers', 'distilleries'],
+      }
+    })
+  </script>
+</body>
+
+</html>
