@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+  <title>V-for and V-if together</title>
+</head>
+
+<body>
+  <div id="app">
+    <table>
+      <tr>
+        <th>Beer</th>
+        <th>Price</th>
+        <th>Beer</th>
+      </tr>
+      <tr v-for='beer in beers'>
+        <td>{{ beer.name }}</td>
+        <td>{{ beer.price }}</td>
+        <td>
+          <button @click='buy(beer)'>Buy</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Subtotal</td>
+        <td>{{ subTotal }}</td>
+        <td></td>
+      </tr>
+    </table>
+    <hr>
+    <div>
+      <h3>Filter</h3>
+      <div v-for='result in results'>
+        <div>{{ result.name }}</div>
+        <p>Original: {{ result.ibu }}</p>
+        <small>After convert -> {{ result.ibu | convertIBU1 }}</small>
+      </div>
+    </div>
+    <hr>
+    <h3>Chaining Filter</h3>
+    <div v-for='result in results'>
+      <div>{{ result.name }}</div>
+      <p>Original: {{ result.ibu }}</p>
+      <small>After convert -> {{ result.ibu | convertIBU('--') | removePeriods | toUpperCase}}</small>
+    </div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        beers: [
+          { name: 'Tikibalag', price: 9.6 },
+          { name: 'Hyote', price: 7.6 },
+          { name: 'People Lick', price: 6.6 },
+          { name: 'North Adjule', price: 8.6 },
+        ],
+        results: [
+          {name: 'Eyakub', ibu: '33 i.b.u'}
+        ],
+        shoppingCart: [],
+        subTotal: 0.00
+      },
+
+      watch: {
+        shoppingCart: function(){
+          this.updateSubTotal();
+        },
+        subTotal: function(latest, original){
+          this.calculateSalesTax();
+        }
+      },
+
+      filters: {
+        convertIBU1: function(value){
+          if(!value){
+            return '';
+          }
+          value = value.toString();
+          value = value.replace(/\./g, '');
+          return value.toUpperCase();
+        },
+        convertIBU: function(value, empty){
+          if(!value){return empty;}
+          return value.toString();
+        },
+        removePeriods: function(value){
+          return value.replace(/\./g, '');
+        },
+        toUpperCase: function(value){
+          return value.toUpperCase();
+        }
+      },
+
+      methods: {
+        updateSubTotal: function() {
+          let s = this.shoppingCart.length;
+          let t = 0;
+          for (let i = 0; i < s; i++){
+            t += this.shoppingCart[i].price
+          }
+          this.subTotal = t;
+        },
+
+        buy: function(beer){
+          this.shoppingCart.push(beer);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
