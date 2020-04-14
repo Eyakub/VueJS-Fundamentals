@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+  <title>V-for and V-if together</title>
+</head>
+
+<body>
+  <div id="app">
+    <label for=""><strong>Max Alcohol by volume</strong></label>
+    <input type="range" v-model="maxAbv" min='0' max='10' />
+    <small>{{ maxAbv }}</small>
+    <hr>
+    <ul>
+      <li><strong>Beers</strong></li>
+      <li v-for='beer in beers' v-if='beer.abv < maxAbv'>
+        {{ beer }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        beers: [
+          { name: 'Tikibalag', abv: 9.6 },
+          { name: 'Hyote', abv: 7.6 },
+          { name: 'People Lick', abv: 6.6 },
+          { name: 'North Adjule', abv: 8.6 },
+        ],
+        maxAbv: 7.0
+      },
+
+      methods: {
+        executeSearch: function () {
+          // this.isRunning = true;
+          // document.forms[0].submit();
+          alert('search cliked')
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>
